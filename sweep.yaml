@@ -1,0 +1,25 @@
+program: train_policy.py
+method: grid
+metric:
+  name: eval_reward
+  goal: maximize
+parameters:
+  n_episode_particles:
+    values:
+      - 20
+  seed:
+    distribution: int_uniform
+    max: 5
+    min: 0
+
+command:
+  - ${env}
+  - python
+  - ${program}
+  - ${args_no_hyphens}
+  - wandb=true
+  - reward_scale=0.003
+  - mutation_prob=0.01
+  - param_noise_prob=0.66666
+  - param_noise_std=0.015
+  - n_policy_particles=500

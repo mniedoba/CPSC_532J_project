@@ -1,0 +1,24 @@
+program: train_policy.py
+method: grid
+metric:
+  name: topk/eval_reward
+  goal: maximize
+parameters:
+  seed:
+    min: 0
+    max: 100
+
+command:
+  - ${env}
+  - python
+  - ${program}
+  - ${args_no_hyphens}
+  - wandb=true
+  - mutation_prob=0.01
+  - param_noise_prob=0.66666
+  - param_noise_std=0.015
+  - keep_fraction=0.2
+  - keep_elites=true
+  - n_policy_particles=1000
+  - n_episode_particles=3
+  - algorithm='TOPK'
